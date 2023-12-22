@@ -17,7 +17,7 @@ const ProductDetailScreen = () => {
       </GenericView>
       <GenericView center flex={2}>
         <GenericView backgroundColor={colors.primary} borderRadius={500} width={800} height={800}>
-
+ 
         </GenericView>
         <GenericView center backgroundColor={colors.secondary}>
         </GenericView>
