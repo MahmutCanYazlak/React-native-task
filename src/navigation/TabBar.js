@@ -2,20 +2,14 @@ import React, { useState } from 'react';
 import { View, Pressable, Dimensions, StyleSheet } from 'react-native';
 import Icon from '../components/shared/Icons';
 import { Text } from 'native-base';
-import { ColorPalette, colors } from '../constants/theme';
+import { ColorPalette, colors, dHeight, dWidth } from '../constants/theme';
 
 const { width, height } = Dimensions.get('window');
 
 const TabBar = ({ state, descriptors, navigation }) => {
-    const [fab, setFab] = useState(false);
+   
 
-    const handlePlusPress = () => {
-        // handle plus press logic
-    };
-
-    const handleMinusPress = () => {
-        // handle minus press logic
-    };
+  
 
     return (
         <View style={styles.mainContainer}>
@@ -40,14 +34,8 @@ const TabBar = ({ state, descriptors, navigation }) => {
 
                 const iconList = [
                     { name: 'home', type: 'SimpleLineIcons', color: isFocused ? colors.secondary : '#A0A0A0', size: 25 },
-                    { name: 'opencart', type: 'Fontisto', color: isFocused ? colors.secondary: '#A0A0A0', size: 19 },
-                    {
-                        name: isFocused && fab ? 'chevron-up' : isFocused ? 'x' : fab ? 'chevron-up' : 'plus',
-                        type: 'Feather',
-                        color: isFocused ?colors.secondary : '#ffffff',
-                        size: 25,
-                    },
                     { name: 'heart', type: 'Octicons', color: isFocused ? colors.secondary : '#A0A0A0', size: 25 },
+                    { name: 'opencart', type: 'Fontisto', color: isFocused ? colors.secondary: '#A0A0A0', size: 20 },
                     { name: 'settings', type: 'Feather', color: isFocused ? colors.secondary : '#A0A0A0', size: 25 },
                 ];
 
@@ -61,11 +49,7 @@ const TabBar = ({ state, descriptors, navigation }) => {
                         navigation.navigate(route.name);
                     }
 
-                    if (index === 2) {
-                        setFab((fab) => !fab);
-                    } else {
-                        setFab(false);
-                    }
+                  
                 };
 
                 return (
@@ -74,37 +58,19 @@ const TabBar = ({ state, descriptors, navigation }) => {
                             onPress={onPress}
                             style={{
                                 backgroundColor: isFocused ? colors.primaryDark : colors.primaryLight,
-                                borderRadius: index === 2 ? 30 : 25,
-                                borderWidth: index === 2 ? 2 : 0,
+                                borderRadius: 25,
                                 borderColor: '#ffffff',
-                                padding: index === 2 ? -10 : 0,
                                 position: 'relative',
+                                height: dHeight * 0.067,
+                                width: dWidth * 0.15,
                             }}>
-                            <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1, padding: 15, flexDirection: 'row' }}>
+                            <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1, padding: 17, flexDirection: 'row' }}>
                                 <Icon {...iconList[index]} />
-                                {index === 3 && (
-                                    <View style={{ position: 'absolute', right: width * -0.033, top: 0, bottom: 0, width: 2, backgroundColor: ColorPalette.thirdLight }} />
+                                {index === 2 && (
+                                    <View style={{ position: 'absolute', right: width * -0.060, top: 0, bottom: 0, width: 2, backgroundColor: ColorPalette.thirdLight }} />
                                 )}
 
-                                {index === 2 &&
-                                    fab && (
-                                        <View style={{ flexDirection: 'row', position: 'absolute', right: width * -0.075, top: height * -0.075, bottom: 0, zIndex: 1 }}>
-                                            <View marginRight={20}>
-                                                <Pressable onPress={() => handlePlusPress()}>
-                                                    <View backgroundColor="#D6B3B6" borderRadius={50} padding={5}>
-                                                        <Icon name="plus-circle-outline" type="MaterialCommunityIcons" size={30} color="#ffffff" />
-                                                    </View>
-                                                </Pressable>
-                                            </View>
-                                            <View marginLeft={20}>
-                                                <Pressable onPress={() => handleMinusPress()}>
-                                                    <View backgroundColor="#D6B3B6" borderRadius={50} padding={5}>
-                                                        <Icon name="minus-circle-outline" type="MaterialCommunityIcons" size={30} color="#ffffff" />
-                                                    </View>
-                                                </Pressable>
-                                            </View>
-                                        </View>
-                                    )}
+                              
                             </View>
                         </Pressable>
                     </View>

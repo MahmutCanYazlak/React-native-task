@@ -17,8 +17,7 @@ function HomeTabs() {
   return (
     <Tab.Navigator initialRouteName={"HomeScreen"} screenOptions={{headerShown:false}} tabBar={(props) => <TabBar {...props} />}>
       <Tab.Screen name="HomeScreen" component={HomeScreen} />
-      <Tab.Screen name="ProductDetailScreen" component={ProductDetailScreen} />
-      <Tab.Screen name="FavoriteScreen" component={FavoriteScreen} options={{}} />
+      <Tab.Screen name="FavoriteScreen" component={FavoriteScreen} />
       <Tab.Screen name="CartScreen" component={CartScreen} />
       <Tab.Screen name="Settings" component={Settings} />
 
@@ -43,6 +42,8 @@ const AppStackNavigator = () => {
     >
       <Stack.Screen name="StarterScreen" component={StarterScreen} />
       <Stack.Screen name="HomeTabs" component={HomeTabs} />
+      <Tab.Screen name="ProductDetailScreen" component={ProductDetailScreen} />
+
     </Stack.Navigator>
   )
 }
