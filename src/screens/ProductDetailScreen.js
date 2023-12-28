@@ -6,17 +6,20 @@ import { Image } from 'native-base'
 import AppHeader from '../components/shared/AppHeader'
 import Icon from '../components/shared/Icons'
 
-const ProductDetailScreen = ({ route }) => {
-  const { params } = route;
+const ProductDetailScreen = ({ route , navigation }) => {
   const [badge, setBadge] = useState(0)
-
-  // 'product' parametresini al
+  const { params } = route;
   const { product } = params;
   const imagePath = require("../assets/css/img/cloud.png")
   const imagePath4 = require("../assets/css/img/image4.png")
+  const onPressBack = () => {
+    navigation.goBack()
+  }
+
+
   return (
     <GenericView flex={3} backgroundColor={colors.primaryLight}>
-      <AppHeader title="Detail Screen" headerBg="transparent" back />
+      <AppHeader title={product.name} headerBg="transparent" back onPressBack={onPressBack}  optionalBtn='heart' onPressOptionalBtn={() => alert('heart')} />
       <GenericView flex={0.7} backgroundColor={colors.primaryLight}>
         <GenericImage source={imagePath} resizeMode="cover" width={dWidth} height={dHeight * 0.20} />
       </GenericView>
@@ -55,7 +58,7 @@ const ProductDetailScreen = ({ route }) => {
               </View>
             </View>
             <GenericTouchableOpacity 
-            onPress={() => setBadge(badge - 1)}
+            onPress={() => badge > 0 ?  setBadge(badge - 1) : null}
             >
               <Icon name="dash" type='Octicons' size={dWidth * .10} color={colors.white} />
             </GenericTouchableOpacity>

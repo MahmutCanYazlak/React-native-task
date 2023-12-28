@@ -106,7 +106,6 @@ export default AppHeader;
 const styles = StyleSheet.create({
 	header: {
 		height: dHeight * 0.06,
-		elevation: 4,
 		justifyContent: 'space-between',
 		alignItems: 'center',
 		flexDirection: 'row',
